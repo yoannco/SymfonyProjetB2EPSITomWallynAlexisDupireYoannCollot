@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+
+    {% block title %}Création/Edition d'une requête{% endblock %}
+
+    {% block body %}
+        <body class="fix-header fix-sidebar card-no-border">
+        <!-- ============================================================== -->
+        <!-- Main wrapper - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <div id="main-wrapper">
+
+            {% include 'navbargauche.html.twig' %}
+            <div class="page-wrapper">
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h3 class="text-themecolor">Tableau de board</h3>
+                    </div>
+                    <div class="col-md-7 align-self-center">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ path('accueil')}}">Accueil</a></li>
+                            <li class="breadcrumb-item active">Ajouter un element</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Container fluid  -->
+                <!-- ============================================================== -->
+                <div class="container-fluid">
+                    <!-- ============================================================== -->
+                    <!-- Start Page Content -->
+                    <!-- ============================================================== -->
+                    <!-- Row -->
+                    <div class="row">
+                        <!-- Column -->
+                        <div class="col-lg-12 col-xlg-9">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="bg-light p-20">
+                                            <div class="d-flex">
+                                                <div class="align-self-center">
+                                                    <h3 class="m-b-0">Ajouter un element</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                {{ form_start(formRequete) }}
+
+                                                {{ form_row(formRequete.cle, {'attr': {'placeholder': "La cle"}}) }}
+                                                {{ form_row(formRequete.valeur, {'attr': {'placeholder': "La valeur"}}) }}
+                                                {{ form_row(formRequete.description) }}
+
+                                                <button type="submit" class="btn btn-success">
+                                                    Enregistrer
+                                                </button>
+
+                                                {{ form_end(formRequete) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <!-- Column -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        </body>
+{% endblock %}

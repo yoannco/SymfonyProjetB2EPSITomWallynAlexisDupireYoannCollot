@@ -1,0 +1,168 @@
+{% extends 'base.html.twig' %}
+
+
+    {% block title %}Launch{% endblock %}
+
+    {% block body %}
+        <body class="fix-header fix-sidebar card-no-border">
+        <!-- ============================================================== -->
+        <!-- Main wrapper - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <div id="main-wrapper">
+
+            {% include 'navbargauche.html.twig' %}
+            <div class="page-wrapper">
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h3 class="text-themecolor">Requête</h3>
+                    </div>
+                    <div class="col-md-7 align-self-center">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ path('accueil') }}">Accueil</a></li>
+                            <li class="breadcrumb-item active">Liste des requêtes</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Container fluid  -->
+                <!-- ============================================================== -->
+                <div class="container-fluid">
+                    <!-- ============================================================== -->
+                    <!-- Start Page Content -->
+                    <!-- ============================================================== -->
+                    <!-- Row -->
+                    <div class="row">
+                        <!-- Column -->
+                        <div class="col-lg-12 col-xlg-9">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="bg-light p-20">
+                                            <div class="d-flex">
+                                                <div class="align-self-center">
+                                                    <h3 class="m-b-0">{{ requetes.titre }}</h3><small>Type : </small><span class="label label-success">{{ requetes.type }}</span>
+                                                    <br><small>URL : {{ requetes.url }}</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                {% if statuscode <=200 %}
+                                                <h4>Résultat de la requête <span class="label label-success">{{ statuscode }}</span></h4>
+                                                {% else %}
+                                                <h4>Résultat de la requête <span class="label label-danger">{{ statuscode }}</span></h4>
+                                                {% endif %}
+                                                <div class="card-body text-success">
+                                                    <p class="card-text">{{ content }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-12 col-xlg-9">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="bg-light p-20">
+                                            <div class="d-flex">
+                                                <div class="align-self-center">
+                                                    <h4 class="m-b-0">CLE DE LA REQUÊTE</h4>
+                                                </div>
+                                                <div class="ml-auto">
+                                                    <a href="{{ path('accueil_createjson', {'id': requetes.id}) }}" class="btn btn-success">Ajouter une Key</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover earning-box">
+                                                        <thead>
+                                                        <tr>
+                                                            <th scope="col">Key</th>
+                                                            <th scope="col">Value</th>
+                                                            <th scope="col">Description</th>
+                                                            <th scope="col">Supprimer</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for param in params %}
+                                                            <tr>
+                                                                <td>{{ param.cle }}</td>
+                                                                <td>{{ param.valeur }}</td>
+                                                                <td>{{ param.description }}</td>
+                                                                <td><a href="{{ path('deleteKey', {'id': param.id}) }}" class="btn btn-danger">Supprimer</a></td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-12 col-xlg-9">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="bg-light p-20">
+                                            <div class="d-flex">
+                                                <div class="align-self-center">
+                                                    <h4 class="m-b-0">HEADER DE LA REQUÊTE</h4>
+                                                </div>
+                                                <div class="ml-auto">
+                                                    <a href="{{ path('accueil_createheader', {'id': requetes.id}) }}" class="btn btn-success">Ajouter un Element</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover earning-box">
+                                                        <thead>
+                                                        <tr>
+                                                            <th scope="col">Key</th>
+                                                            <th scope="col">Value</th>
+                                                            <th scope="col">Description</th>
+                                                            <th scope="col">Supprimer</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for header in headers %}
+                                                            <tr>
+                                                                <td>{{ header.cle }}</td>
+                                                                <td>{{ header.valeur }}</td>
+                                                                <td>{{ header.description }}</td>
+                                                                <td><a href="{{ path('deleteHeader', {'id': header.id}) }}" class="btn btn-danger">Supprimer</a></td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- Column -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        </body>
+{% endblock %}
